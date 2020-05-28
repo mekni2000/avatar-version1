@@ -1,0 +1,812 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+@font-face {
+    font-family: 'Poppins-Bold';
+    src: url(../font/Poppins-Bold.ttf);
+}
+
+@font-face {
+    font-family: 'Poppins-Light';
+    src: url(../font/Poppins-Light.ttf);
+}
+
+@font-face {
+    font-family: 'Poppins-Medium';
+    src: url(../font/Poppins-Medium.ttf);
+}
+
+@font-face {
+    font-family: 'Poppins-SemiBold';
+    src: url(../font/Poppins-SemiBold.ttf);
+}
+
+@font-face {
+    font-family: 'Poppins-regular';
+    src: url(../font/Poppins-Regular.ttf);
+}
+
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+    color: #0366d6;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+.name_categorie {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.border-top {
+    border-top: 1px solid #e5e5e5;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+    font-size: 1rem;
+    line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px; /* Vertically center the text there */
+}
+
+
+header .navbar-avatar {
+    z-index: 2;
+    background: #00000059;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+header .list-avatar li a {
+    font-family: Poppins-Medium;
+    color: #fff !important;
+    font-size: 14px !important;
+    letter-spacing: 1.2px;
+    padding-right: !important;
+    padding-right: 18px !important;
+    padding-left: 14px !important;
+}
+
+header .list-avatar {
+    justify-content: flex-end;
+}
+
+.container {
+    max-width: 90%;
+}
+
+.bienvenue {
+    position: absolute;
+    top: 50%;
+    left: 49%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 2;
+}
+
+    .bienvenue p {
+        color: #FFFFFF;
+        font-family: Poppins-Light;
+        font-size: 22px;
+        letter-spacing: 1.1px;
+        margin-bottom: 2px
+    }
+
+    .bienvenue h1 {
+        color: #FFFFFF;
+        font-family: Poppins-Bold;
+        font-size: 50px;
+        letter-spacing: 1.1px;
+    }
+
+        .bienvenue h1 span {
+            color: #FF006B
+        }
+
+.carousel-fade .carousel-item {
+    height: 100vh
+}
+
+.telechargement {
+    margin-top: 45px;
+}
+
+.arrow-down {
+    z-index: 2;
+    position: absolute;
+    bottom: 25px;
+    left: 48%;
+    right: 50%;
+    cursor: pointer;
+}
+
+.qualite {
+    background-image: url(../img/bg.png);
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    padding: 68px 0 0;
+    background-size: cover;
+}
+
+.faire {
+    color: #252525;
+    font-size: 23px;
+    font-family: 'Poppins-SemiBold';
+    margin-bottom: 23px;
+}
+
+.regarde-app {
+    margin-top: 35px;
+}
+
+    .regarde-app img {
+        width: 50px;
+        height: 37px;
+        object-fit: scale-down;
+    }
+
+    .regarde-app h6 {
+        color: #252525;
+        font-family: Poppins-regular;
+        letter-spacing: 1.0px;
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    .regarde-app p {
+        color: #707070;
+        font-family: Poppins-regular;
+        letter-spacing: 1.1px;
+        line-height: 1.3;
+        font-size: 14px;
+    }
+
+.border-box {
+    border: 1px solid #E6E6E6;
+    border-radius: 15px;
+    -webkit-transition: 0.25s all;
+    -o-transition: 0.25s all;
+    -moz-transition: 0.25s all;
+    transition: 0.25s all;
+    padding: 5px 15px 0;
+ 
+}
+
+    .border-box:hover {
+        box-shadow: 0px 0px 10px 0px #a7a7a7;
+    }
+
+    .border-box .voir_plus {
+        text-align: right;
+    }
+
+        .border-box .voir_plus a {
+            text-decoration: none;
+            outline: none;
+            padding: 7px 18px 7px;
+            border-radius: 50px;
+            color: #fff;
+            font-size: 14px;
+            background: #FF006B;
+            font-family: Poppins-regular;
+            font-weight: 600;
+            /* text-align: right; */
+            letter-spacing: 1px;
+        }
+
+.img-urk {
+    width: 100px;
+    height: 80px;
+    margin: 16px 0;
+}
+
+.name_categorie {
+    font-family: Poppins-SemiBold;
+    font-size: 14px;
+    color: #000000;
+}
+
+.bg-gris {
+    background: #F3F3F3;
+    padding: 20px 0 6px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.height-77 {
+    height: 77vh;
+}
+
+.application1 {
+    background-image: url("../img/bg-application.png");
+    background-size: cover;
+    margin-top: 61px;
+    padding: 85px 0 10px;
+    background-repeat: no-repeat;
+    color: #fff
+}
+
+img {
+    max-width: 100%
+}
+
+.application1 h3 {
+    font-family: Poppins-SemiBold;
+    font-size: 28px;
+}
+
+.application1 p {
+    font-family: Poppins-regular;
+    font-size: 16px;
+    margin: 22px 0;
+}
+
+.application1 h4 {
+    font-family: Poppins-Medium;
+    font-size: 22px;
+}
+
+    .application1 h4 span {
+        color: #FFD201;
+        font-family: Poppins-Bold;
+    }
+
+.play-badge {
+    margin-top: 29px;
+}
+
+    .play-badge img {
+        width: 150px
+    }
+
+.contact-nous {
+    background-image: url(../img/bg-contact.png);
+    padding: 85px 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+    .contact-nous h2 {
+        color: #FF006B;
+        font-family: Poppins-Bold;
+        font-size: 28px;
+    }
+
+    .contact-nous .regarde-app {
+        margin-top: 20px;
+        align-items: baseline;
+    }
+
+        .contact-nous .regarde-app p {
+            color: #0F0F0F
+        }
+
+footer {
+    background: #150C4F;
+    color: #fff;
+    font-family: Poppins-regular;
+    font-size: 15px;
+    padding: 14px 0;
+}
+
+.padding-85 {
+    padding-bottom: 46px;
+    padding-top: 35px;
+}
+
+footer p {
+    margin-bottom: 0
+}
+
+footer ul {
+    list-style: none;
+    justify-content: flex-end;
+    margin-bottom: 0
+}
+
+    footer ul li {
+        margin-left: 16px;
+    }
+
+        footer ul li a {
+            cursor: pointer
+        }
+
+header nav {
+    padding-left: 0 !important;
+    padding-right: 0 !important
+}
+
+.demander-film {
+    background-image: url(../img/bg-forms.png);
+    height: 63vh;
+    color: #fff;
+    font-family: Poppins-Bold;
+    font-size: 43px;
+    letter-spacing: 1.2px;
+    background-size: contain;
+}
+
+    .demander-film h2 {
+        font-size: 43px;
+    }
+
+    .demander-film div {
+        position: absolute;
+        top: 30%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -30%);
+        text-align: center;
+    }
+
+header .navbar-forms {
+    background: #150C4F
+}
+
+.demande-flim2 .accueil {
+    color: #464646;
+    font-family: Poppins-regular;
+    font-size: 22px;
+}
+
+    .demande-flim2 .accueil span {
+        color: #FF006B;
+        font-family: Poppins-Medium;
+    }
+
+.dmand-film {
+    padding: 40px 0;
+    background: #F3F3F3;
+}
+
+.dmd {
+    margin-top: 31px;
+    margin-bottom: 31px;
+}
+
+.envy input {
+    background-color: #FF006B;
+    border-color: #FF006B;
+    border-radius: 50px;
+    letter-spacing: 1.1px;
+    font-family: poppins-regular;
+    font-size: 15px;
+    font-weight: 600;
+    margin: 12px 0px;
+    color: #fff;
+    outline: none;
+    padding: 6px 20px;
+    border: none
+}
+
+    .envy input:hover, .envy input:active, .envy input:focus {
+        background-color: #FF006B;
+        border-color: #FF006B;
+    }
+
+.form-control:focus {
+    border-color: #FF006B;
+    outline: 0;
+    box-shadow: 0 0 0 rgba(0,123,255,.25);
+}
+
+.bg-blanc {
+    margin-top: 15vh;
+    font-size: 26px;
+    color: #FF006B;
+    font-family: poppins-bold;
+    letter-spacing: 1px;
+    margin-bottom: 31px;
+}
+
+.table thead th {
+    color: #FF006B;
+    font-family: Poppins-Medium
+}
+
+tbody tr:nth-child(2n+1) {
+    background: #F9F9F9
+}
+tbody tr:nth-child(2n) {
+    background: #fff
+}
+.table thead th{
+    border:none
+}
+.tabl {
+    box-shadow: 0px 0px 9px -3px #909090;
+    border-radius: 0px;
+}
+thead tr  {
+    background: #fff
+}
+
+td {
+    font-family: Poppins-regular;
+    font-size: 14px;
+    font-weight: 600;
+    color: #262626
+}
+
+.table td, .table th {
+    padding: 20px .75rem;
+}
+
+.name_cat {
+    font-size: 19px;
+    font-family: Poppins-bold;
+    font-weight: 600;
+    color: #FF006B;
+}
+.name_cat1 {
+    font-size: 16px;
+    font-family: Poppins-regular;
+    color: #464646
+}
+    .name_cat span {
+        color: #FF006B;
+        font-family: Poppins-Medium
+    }
+
+.color-rose {
+    background: #fff
+}
+.carousel-fade{
+    transition:0.1s all
+}
+header .bg-bleu {
+    background: #150C4F
+}
+
+.bg-blanc {
+    background: #fff;
+}
+.carousel-fade .carousel-item{
+    opacity:0.8
+}
+footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0
+}
+
+a.text-dark {
+    border-bottom: 2px solid transparent;
+}
+
+    a.text-dark:focus, a.text-dark:hover {
+        color: #ffffff !important;
+        border-bottom: 2px solid #fff;
+    }
+
+.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    z-index: 555555555555
+}
+
+    .loading img {
+        width: 100%;
+        height: 100vh;
+        object-fit: fill;
+    }
+
+.header-admin {
+    margin-bottom: 150px
+}
+
+.img-av img {
+    width: 113px;
+    height: 64px;
+    object-fit: cover;
+}
+
+.categorie-img {
+    text-align: center
+}
+
+    .categorie-img img {
+        width: 77%;
+        height: 121px;
+        border-radius: 12px;
+        margin: 30px 0 38px;
+        box-shadow: 0px 0px 6px 1px #d3d1d1;
+    }
+
+.margin-bottom-30 {
+    margin-bottom: 50px
+}
+
+@media screen and (max-width:991px) {
+    .navbar-light .navbar-toggler-icon {
+        background-image: url('../img/Menu.svg');
+    }
+    .collapse:not(.show) {
+        display: none !important;
+    }
+    .navbar-expand-sm .navbar-nav{
+        display:block !important
+    }
+    .responsive-mo {
+        display: flex;
+      align-items:center;
+        width: 100%;
+        justify-content: space-between;
+    }
+    nav .container{
+        display:block !important
+    }
+    .envy {
+        margin-bottom: 35px
+    }
+    .navbar-brand img {
+        width: 73px
+    }
+    .arrow-down {
+        width: 15px;
+    }
+    .w-100 {
+        height: 100%;
+        object-fit: fill;
+    }
+
+    .bienvenue h1 {
+        font-size: 26px;
+    }
+
+    .bienvenue p {
+        font-size: 13px;
+    }
+
+    .carousel-fade .carousel-item {
+        height: 47vh;
+    }
+
+    .qualite {
+        padding: 0
+    }
+    .table {
+        width: 156vw;
+    }
+    .name_categorie {
+  
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+    }
+        .faire {
+        text-align: center;
+        font-size: 20px;
+        margin-top: 47px;
+        margin-bottom: 10px;
+    }
+
+    .qualite .row {
+        justify-content: center;
+    }
+    .loading{
+        display:none
+    }
+    .regarde-app h6 {
+        text-align: center;
+        margin-top: 15px;
+    }
+
+    .regarde-app p {
+        font-size: 13px;
+        text-align: center;
+    }
+
+    .padding-85 {
+        padding-bottom: 85px
+    }
+
+    .border-box .voir_plus a {
+        padding: 7px
+    }
+
+    header .navbar-avatar {
+        background: #000000a1;
+    }
+
+    application1 {
+        padding: 7px 0 10px;
+    }
+
+    .application1 h3 {
+        font-size: 21px;
+        text-align: center;
+    }
+
+    .application1 p {
+        font-size: 15px;
+        text-align: center;
+    }
+
+        .application1 p br {
+            display: none
+        }
+
+    .application1 h4 {
+        font-size: 19px;
+        text-align: center;
+    }
+
+    .play-badge {
+        margin-top: 19px;
+        margin-bottom: 19px;
+        text-align: center;
+    }
+
+    .contact-nous {
+        padding: 52px 0;
+        text-align: center;
+        margin-bottom: 69px;
+    }
+
+        .contact-nous h2 {
+            text-align: center;
+            font-size: 22px;
+        }
+
+        .contact-nous .regarde-app {
+            justify-content: center;
+        }
+
+    footer ul {
+        justify-content: center;
+        padding: 0;
+    }
+
+    footer p {
+        text-align: center;
+    }
+
+    .height-77 {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: scroll;
+    }
+
+    .bg-blanc {
+        margin-top: 14vh;
+    }
+
+    .navbar-expand-sm .navbar-toggler {
+        display: block;
+        height: 40px;
+    }
+
+    /*.collapse:not(.show), .navbar-expand-sm .navbar-collapse {
+        display: none !important;
+    }*/
+
+    .demander-film h2 {
+        font-size: 26px;
+    }
+
+    .demander-film {
+        background-size: contain;
+        height: 55vh;
+    }
+
+        .demander-film div {
+            top: 16%;
+        }
+
+    .demande-flim2 .accueil {
+        font-size: 20px
+    }
+
+    .padding-85 {
+        padding-bottom: 74px;
+        padding-top: 38px;
+    }
+
+    .form-control {
+        margin-top: 12px
+    }
+
+    .dmand-film {
+        padding: 29px 0;
+        margin-bottom: 75px;
+    }
+
+    .dmd {
+        margin-top: 19px;
+        margin-bottom: 19px;
+    }
+}
+
+.table td, .table th {
+    padding: 20px .75rem;
+}
+.table thead th a{
+    color: #FF006B;
+    font-family: Poppins-Medium;
+   text-decoration:none;
+   cursor:auto
+ 
+}
+.height-60 {
+    height: 75px;
+}
+label{
+    font-family:Poppins-regular;
+    
+}
+.pagination {
+    margin-bottom: 60px;
+}
+.navbar-light .navbar-brand img{
+    width:95px
+}
+
+.kenburns-top {
+    -webkit-animation: kenburns-top 5s ease-out both;
+    animation: kenburns-top 5s ease-out both;
+}
+.slideInDown {
+    animation-iteration-count: infinite
+}
+.envy {
+    margin: -6px 0 14px;
+}

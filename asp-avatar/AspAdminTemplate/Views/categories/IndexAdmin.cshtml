@@ -1,0 +1,181 @@
+﻿@model X.PagedList.IPagedList<AspAdminTemplate.Models.avatar.category>
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Mvc.Core.Common;
+
+        @{
+        ViewData["Title"] = "category";
+        ViewBag.Title = "category";
+        }
+    <header id="home" class="header-admin">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light  bg-bleu navbar-avatar   mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="categories" asp-action="Index">   <img src="~/assets/img/logo.svg" /></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1 list-avatar">
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="categories" asp-action="Index">Accueil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark " asp-controller="categories" asp-action="IndexAdmin">Categories</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark " asp-controller="subcategories" asp-action="Index">Sous Categories</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark " asp-controller="forms" asp-action="Index">Demande de film</a>
+                        </li>
+                        @*<li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="applicationroles" asp-action="Index">
+                                <i class="fas fa-cogs"></i> <span>Roles</span>
+                            </a>
+                        </li>*@
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="admin" asp-action="Index">
+                                <i class="fas fa-users"></i> <span>Users</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                             
+                                @*<a class="dropdown-item has-icon" asp-action="Update" asp-controller="Admin" asp-route-id="@UserManager.GetUserId(User)">
+                <i class="far fa-user"></i> Edit Profile
+            </a>*@
+                                @*<div class="dropdown-divider"></div>*@
+                                <a class="dropdown-item has-icon text-danger" asp-controller="Account" asp-action="Logout">
+                                    <i class="fas fa-sign-out-alt"></i> Logout
+                                </a>
+                          
+                        </li>
+                  
+
+
+
+                    </ul>
+
+
+                </div>
+            </div>
+        </nav>
+
+
+
+
+        @*<li class="menu-header">Administration Management</li>
+        <li class="nav-item">
+            <a class="nav-link" asp-area="" asp-controller="applicationroles" asp-action="Index">
+                <i class="fas fa-cogs"></i> <span>Roles</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" asp-area="" asp-controller="admin" asp-action="Index">
+                <i class="fas fa-users"></i> <span>Users</span>
+            </a>
+        </li>
+        <ul class="navbar-nav navbar-right">
+            <li class="dropdown">
+                <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                    <img alt="image" src="~/assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
+                    <div class="d-sm-none d-lg-inline-block">Hi, @User.Identity.Name </div>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item has-icon" asp-action="Update" asp-controller="Admin" asp-route-id="@UserManager.GetUserId(User)">
+                        <i class="far fa-user"></i> Edit Profile
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item has-icon text-danger" asp-controller="Account" asp-action="Logout">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+                </div>
+            </li>
+
+        </ul>*@
+    </header>
+        <section class="section">
+            <div class="container section-header">
+                <h5>category</h5>
+            </div>
+            
+            <div class="container section-body">
+                <h6 class="section-title">@(Model.TotalItemCount) IndexAdmins</h6>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header card-relative">
+                                    
+                                    <a asp-action="Create" class="btn btn-primary">Create New</a>
+                                    
+                                @*<div class="card-header-action width-card text-right">
+                                    <div class="dropdown d-inline mr-2">
+                                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Dowload Backup
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#" onclick="window.location='/'">SQL file</a>
+                                            <a class="dropdown-item" href="#" onclick="window.location='/'">PDF file</a>
+                                            <a class="dropdown-item" href="#" onclick="window.location='/'">CSV file</a>
+                                        </div>
+                                    </div>
+                                </div>*@
+                                
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-striped" id="table-1">
+                                        <thead>
+                                            <tr>
+                                                        <th>
+                                                                @Html.ActionLink("name","IndexAdmin",new { sortOrder = ViewBag.nameSortParm, currentFilter=ViewBag.CurrentFilter })
+                                                        </th>
+                                                        <th>
+                                                                @Html.ActionLink("Avatar","IndexAdmin",new { sortOrder = ViewBag.AvatarSortParm, currentFilter=ViewBag.CurrentFilter })
+                                                        </th>
+                                                    <th class="text-right">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model) {
+                                            <tr>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.name)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Avatar)
+                                                            </td>
+                                                        <td class="text-right">
+                                                            <div class="btn-group mb-3" role="group" aria-label="Basic example">
+                                                                    <a asp-action="Edit" asp-route-id="@item.id" class="btn btn-primary mr-2">Edit</a>
+                                                                    <a asp-action="Details" asp-route-id="@item.id" class="btn btn-info mr-2">Details</a>
+                                                                    <a asp-action="Delete" asp-route-id="@item.id" class="btn btn-danger">Delete</a>
+                                                            </div>
+                                                        </td>
+                                            </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                @Html.PagedListPager(Model, page => Url.Action("IndexAdmin",
+                                new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }), 
+                                    new PagedListRenderOptions
+                                    {
+                                       DisplayLinkToFirstPage = X.PagedList.Mvc.Common.PagedListDisplayMode.Always,
+                                       DisplayLinkToLastPage = X.PagedList.Mvc.Common.PagedListDisplayMode.Always,
+                                       DisplayLinkToNextPage = X.PagedList.Mvc.Common.PagedListDisplayMode.Always,
+                                       DisplayLinkToPreviousPage = X.PagedList.Mvc.Common.PagedListDisplayMode.Always,
+                                       LinkToFirstPageFormat = "First",
+                                       LinkToLastPageFormat = "Last",
+                                       LiElementClasses = new string[] { "page-item" },
+                                       PageClasses = new string[] { "page-link" },
+                                    }
+                                )
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </section>

@@ -1,0 +1,80 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="navbar-bg"></div>
+    <nav class="navbar navbar-expand-lg main-navbar">
+        <form class="form-inline mr-auto">
+            <ul class="navbar-nav mr-3">
+                <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
+            </ul>
+        </form>
+
+        <ul class="navbar-nav navbar-right">
+            <li class="dropdown">
+                <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                    <img alt="image" src="~/assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
+                    <div class="d-sm-none d-lg-inline-block">Hi, @User.Identity.Name </div>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    @*<a class="dropdown-item has-icon" asp-action="Update" asp-controller="Admin" asp-route-id="@UserManager.GetUserId(User)">
+                            <i class="far fa-user"></i> Edit Profile
+                        </a>*@
+                    @*<div class="dropdown-divider"></div>*@
+                    <a class="dropdown-item has-icon text-danger" asp-controller="Account" asp-action="Logout">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+                </div>
+            </li>
+
+        </ul>
+    </nav>
+
+    <div class="main-sidebar">
+        <aside id="sidebar-wrapper">
+            <div class="sidebar-brand">
+                <a asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="~/assets/img/logo.png" class="logo_open" alt="" />
+                </a>
+            </div>
+            <div class="sidebar-brand sidebar-brand-sm">
+                <a asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="~/assets/img/logo.png" class="logo_close" alt="" />
+                </a>
+            </div>
+
+            <ul class="sidebar-menu">
+
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link has-dropdown">
+                        <img class="sidebarimg" src="~/assets/img/p-50.png" alt="" /> <span>Menu1</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="nav-link" asp-area="" asp-controller="SubMenu1" asp-action="Index">SubMenu1</a></li>
+                    </ul>
+                </li>
+
+                @*@if (User.IsInRole("Admin"))
+                    {*@
+                <li class="menu-header">Administration Management</li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-controller="applicationroles" asp-action="Index">
+                        <i class="fas fa-cogs"></i> <span>Roles</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-controller="admin" asp-action="Index">
+                        <i class="fas fa-users"></i> <span>Users</span>
+                    </a>
+                </li>
+                @*}*@
+
+            </ul>
+
+        </aside>
+    </div>
+
+}

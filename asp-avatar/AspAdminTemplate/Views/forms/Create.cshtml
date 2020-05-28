@@ -1,0 +1,125 @@
+﻿@model AspAdminTemplate.Models.avatar.forms
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<header id="home">
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light  bg-bleu navbar-avatar   mb-3">
+        <div class="container">
+            <div class="responsive-mo">
+                <a class="navbar-brand" asp-area="" asp-controller="ca" asp-action="Index">   <img src="~/assets/img/logo.svg" /></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                <ul class="navbar-nav flex-grow-1 list-avatar">
+
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-controller="categories" asp-action="Index">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark " asp-controller="categories" asp-action="Index">Nos Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark " asp-controller="categories" asp-action="Index">Téléchargements</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark " asp-controller="categories" asp-action="Index"> Application</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark " asp-controller="categories" asp-action="Index"> Contactez-nous</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="forms" asp-action="Create"> Demander film</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="/" target="_blank" asp-action="facebook.com"> Nos Stores</a>
+                    </li>
+
+                </ul>
+
+
+            </div>
+        </div>
+    </nav>
+
+    @*<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>*@
+
+
+
+
+</header>
+
+<div class="demander-film">
+    <div class="">
+        <h2>Demander Filmes ou Séries</h2>
+    </div>
+</div>
+<div class="bg-gris padding-85">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9">
+                <div class="demande-flim2">
+                    <p class="accueil">Accueil > <span>Demander Film</span></p>
+                </div>
+                <div class="mt-4 mb-4">
+                    <p>Demander un film ou bien une série que vous voulez la regarder sur l'application AVIPTV.s</p>
+                </div>
+                <form asp-action="Create">
+
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="row">
+
+
+                        <div class="form-group col-lg-6">
+                            <label asp-for="Nom" class="control-label">Nom </label>
+                            <input asp-for="Nom" class="form-control" />
+                            <span asp-validation-for="Nom" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <label asp-for="Prenom" class="control-label">Prénom</label>
+                            <input asp-for="Prenom" class="form-control" />
+                            <span asp-validation-for="Prenom" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <label asp-for="email" class="control-label">Email</label>
+                            <input asp-for="email" class="form-control" />
+                            <span asp-validation-for="email" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <label asp-for="NumeroAbonnement" class="control-label">Numéro d'abonnement</label>
+                            <input asp-for="NumeroAbonnement" class="form-control" />
+                            <span asp-validation-for="NumeroAbonnement" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-lg-12">
+                            <label asp-for="nomFilm" class="control-label">Nom de Filme / Série demandé</label>
+                            <input asp-for="nomFilm" class="form-control" />
+                            <span asp-validation-for="nomFilm" class="text-danger"></span>
+                        </div>
+                        <div class="form-group envy col">
+                            <input type="submit" value="Envoyer" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

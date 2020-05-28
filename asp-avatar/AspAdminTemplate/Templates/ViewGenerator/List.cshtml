@@ -1,0 +1,336 @@
+﻿@inherits Microsoft.VisualStudio.Web.CodeGeneration.Templating.RazorTemplateBase
+@using Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore
+@using System.Collections.Generic
+@using System.Linq
+@using System.Reflection;
+@@model @GetIPagedListTypeExpression(Model.ViewDataTypeName)
+@@using X.PagedList.Mvc.Core;
+@@using X.PagedList.Mvc.Core.Common;
+
+@{
+    List<PropertyInfo> propsThatShouldBeDisplayedAsImages = GetPropsByAttribute("AspAdminTemplate.Attributes.DisplayAsImageAttribute");
+    if (propsThatShouldBeDisplayedAsImages.Count>0)
+    {
+        <text>
+            @@using AspAdminTemplate.Extenstions;
+            @@using AspAdminTemplate.Attributes.Enums;
+        </text>
+    }
+
+    if (Model.IsPartialView)
+    {
+    }
+    else if (Model.IsLayoutPageSelected)
+    {
+        @:@@{
+        @:ViewData["Title"] = "@Model.ViewDataTypeShortName";
+        @:ViewBag.Title = "@Model.ViewDataTypeShortName";
+        if (!string.IsNullOrEmpty(Model.LayoutPageFile))
+        {
+            @:Layout = "@Model.LayoutPageFile";
+        }
+        @:}
+        @:
+        @:<section class="section">
+            @:<div class="section-header">
+                @:<h1>@Model.ViewDataTypeShortName</h1>
+            @:</div>
+            @:
+        }
+        else
+        {
+            @:@@{
+            @:Layout = null;
+            @:}
+            @:
+            @:<!DOCTYPE html>
+            @:
+            @:<html>
+            @:<head>
+                @:<meta name="viewport" content="width=device-width" />
+                @:<title>@Model.ViewName</title>
+            @:</head>
+            @:<body>
+                //    PushIndent("    ");
+            }
+            @:<div class="section-body">
+                @:<h2 class="section-title">@@(Model.TotalItemCount) @(Model.ViewName)s</h2>
+                @:<div class="row">
+                    @:<div class="col-12">
+                        @:<div class="card">
+                            @:<div class="card-header card-relative">
+                                var displayCRUD = GetModelClassCustomAttributesProperties("AspAdminTemplate.Attributes.DisplayCRUDAttribute");
+                                bool showCreate = displayCRUD == null ? true : displayCRUD.Value.props.First(x => x.Name == "Create").GetValue(displayCRUD.Value.attribute);
+                                bool showDetails = displayCRUD == null ? true : displayCRUD.Value.props.First(x => x.Name == "Details").GetValue(displayCRUD.Value.attribute);
+                                bool showUpdate = displayCRUD == null ? true : displayCRUD.Value.props.First(x => x.Name == "Update").GetValue(displayCRUD.Value.attribute);
+                                bool showDelete = displayCRUD == null ? true : displayCRUD.Value.props.First(x => x.Name == "Delete").GetValue(displayCRUD.Value.attribute);
+                                bool showActionButtons = showDetails || showUpdate || showDelete;
+                                if (displayCRUD== null || showCreate) {
+                                    @:
+                                    @:<a asp-action="Create" class="btn btn-primary">Create New</a>
+                                    @:
+                                }
+                                List<PropertyInfo> searchableProps = GetPropsByAttribute("AspAdminTemplate.Attributes.SearchableAttribute");
+                                if (searchableProps.Count > 0)
+                                {
+                                    @:<div class="card-header-form card-relative width-card">
+                                        @:@@using (Html.BeginForm("@(Model.ViewName)","@Model.ViewDataTypeShortName", FormMethod.Get))
+                                        @:{
+                                        @:<div class="input-group" data-toggle="tooltip" data-placement="right" title="" data-html="true" data-original-title="@GenerateSearchStringFromSearchableProps(searchableProps)">
+                                            @:<input class="form-control" name="SearchString" value="@@(ViewBag.CurrentFilter as string)" type="search" placeholder="Search" aria-label="Search" data-width="250" style="width: 250px;">
+                                            @:<button class="btn btn-primary"><i class="fas fa-search"></i></button>
+                                        @:</div>
+                                        @:}
+                                    @:</div>
+                                    @:
+                                }
+                                @:<div class="card-header-action width-card text-right">
+                                    @:<div class="dropdown d-inline mr-2">
+                                        @:<button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            @:Dowload Backup
+                                        @:</button>
+                                        @:<div class="dropdown-menu">
+                                            @:<a class="dropdown-item" href="#" onclick="window.location='/'">SQL file</a>
+                                            @:<a class="dropdown-item" href="#" onclick="window.location='/'">PDF file</a>
+                                            @:<a class="dropdown-item" href="#" onclick="window.location='/'">CSV file</a>
+                                        @:</div>
+                                    @:</div>
+                                @:</div>
+                                @:
+                            @:</div>
+                            @:<div class="card-body">
+                                @:<div class="table-responsive">
+                                    @:<table class="table table-striped" id="table-1">
+                                        @:<thead>
+                                            @:<tr>
+                                                Dictionary<string, IPropertyMetadata> propertyLookup = ((IModelMetadata)Model.ModelMetadata).Properties.ToDictionary(x => x.PropertyName, x => x);
+                                                Dictionary<string, INavigationMetadata> navigationLookup = ((IModelMetadata)Model.ModelMetadata).Navigations.ToDictionary(x => x.AssociationPropertyName, x => x);
+
+                                                foreach (var item in Model.ModelMetadata.ModelType.GetProperties())
+                                                {
+                                                    if (propertyLookup.TryGetValue(item.Name, out IPropertyMetadata property)
+                                                        && property.Scaffold && !property.IsForeignKey && !property.IsPrimaryKey)
+                                                    {
+                                                        @:<th>
+                                                            if (property.TypeName.Equals("System.Boolean"))
+                                                            {
+                                                                @:@@Html.DisplayNameFor(model => model.First().@GetValueExpression(property))
+                                                            }
+                                                            else
+                                                            {
+                                                                @:@@Html.ActionLink("@GetValueExpression(property)","@(Model.ViewName)",new { sortOrder = ViewBag.@(property.PropertyName)SortParm, currentFilter=ViewBag.CurrentFilter })
+                                                            }
+
+                                                        @:</th>
+                                                    }
+                                                    else if (navigationLookup.TryGetValue(item.Name, out INavigationMetadata navigation))
+                                                    {
+                                                        <th>
+                                                            @@Html.DisplayNameFor(model => model.First().@GetValueExpression(navigation))
+                                                        </th>
+                                                    }
+                                                }
+                                                if (showActionButtons)
+                                                {
+                                                    @:<th>Action</th>
+                                                }
+                                            @:</tr>
+                                        @:</thead>
+                                        @:<tbody>
+                                            @:@@foreach (var item in Model) {
+                                            @:<tr>
+                                                foreach (var item in Model.ModelMetadata.ModelType.GetProperties())
+                                                {
+                                                    if (propertyLookup.TryGetValue(item.Name, out IPropertyMetadata property)
+                                                        && property.Scaffold && !property.IsForeignKey && !property.IsPrimaryKey)
+                                                    {
+                                                        PropertyInfo imageProp = propsThatShouldBeDisplayedAsImages.FirstOrDefault(X => X.Name == @GetValueExpression(property));
+                                                        if(imageProp != null){
+                                                            (PropertyInfo[] props, dynamic attribute)? displayAsImageProps = GetAttributesPropsOfProperty(imageProp,"AspAdminTemplate.Attributes.DisplayAsImageAttribute");
+                                                            string baseUrl = displayAsImageProps == null ? true : displayAsImageProps.Value.props.FirstOrDefault(x => x.Name == "BaseUrl").GetValue(displayAsImageProps.Value.attribute).ToString();
+                                                            string imageBackground = displayAsImageProps == null ? true : displayAsImageProps.Value.props.FirstOrDefault(x => x.Name == "ImageBackground").GetValue(displayAsImageProps.Value.attribute).ToString();
+                                                            <td>
+                                                                @@Html.DisplayAsImage("@(baseUrl)",item.@GetValueExpression(property),"",imageBackground:ImageBackground.@(imageBackground),cssClass:"img")
+                                                            </td>
+                                                        }else{
+                                                            <td>
+                                                                @@Html.DisplayFor(modelItem => item.@GetValueExpression(property))
+                                                            </td>
+                                                        }
+                                                    }
+                                                    else if (navigationLookup.TryGetValue(item.Name, out INavigationMetadata navigation))
+                                                    {
+                                                        <td>
+                                                            @@Html.DisplayFor(modelItem => item.@GetValueExpression(navigation).@navigation.DisplayPropertyName)
+                                                        </td>
+                                                    }
+                                                }
+                                                if(showActionButtons){
+                                                    string pkName = GetPrimaryKeyName();
+                                                    if (pkName != null)
+                                                    {
+                                                        @:<td>
+                                                            @:<div class="btn-group mb-3" role="group" aria-label="Basic example">
+                                                                if (displayCRUD == null || showUpdate)
+                                                                {
+                                                                    @:<a asp-action="Edit" asp-route-id="@@item.@pkName" class="btn btn-primary">Edit</a>
+                                                                }
+                                                                if (displayCRUD == null || showDetails)
+                                                                {
+                                                                    @:<a asp-action="Details" asp-route-id="@@item.@pkName" class="btn btn-info">Details</a>
+                                                                }
+                                                                if (displayCRUD == null || showDelete)
+                                                                {
+                                                                    @:<a asp-action="Delete" asp-route-id="@@item.@pkName" class="btn btn-danger">Delete</a>
+                                                                }
+                                                            @:</div>
+                                                        @:</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>
+                                                            @@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                                                            @@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                                            @@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                                        </td>
+                                                    }
+                                                }
+                                            @:</tr>
+                                            @:}
+                                        @:</tbody>
+                                    @:</table>
+                                @:</div>
+                            @:</div>
+                            @:<div class="card-footer">
+                                @:@@Html.PagedListPager(Model, page => Url.Action("@(Model.ViewName)",
+                                @:new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }), 
+                                    @:new PagedListRenderOptions
+                                    @:{
+                                       @:DisplayLinkToFirstPage = X.PagedList.Mvc.Common.PagedListDisplayMode.Always,
+                                       @:DisplayLinkToLastPage = X.PagedList.Mvc.Common.PagedListDisplayMode.Always,
+                                       @:DisplayLinkToNextPage = X.PagedList.Mvc.Common.PagedListDisplayMode.Always,
+                                       @:DisplayLinkToPreviousPage = X.PagedList.Mvc.Common.PagedListDisplayMode.Always,
+                                       @:LinkToFirstPageFormat = "First",
+                                       @:LinkToLastPageFormat = "Last",
+                                       @:LiElementClasses = new string[] { "page-item" },
+                                       @:PageClasses = new string[] { "page-link" },
+                                    @:}
+                                @:)
+                            @:</div>
+                        @:</div>
+                    @:</div>
+                @:</div>
+            @:</div>
+            @:</section>
+    if (!Model.IsPartialView && !Model.IsLayoutPageSelected)
+    {
+        //ClearIndent();
+        @:</body>
+        @:</html>
+    }
+}
+@functions
+{
+    string GetPrimaryKeyName()
+    {
+        return (Model.ModelMetadata.PrimaryKeys != null && Model.ModelMetadata.PrimaryKeys.Length == 1)
+        ? Model.ModelMetadata.PrimaryKeys[0].PropertyName
+        : null;
+    }
+
+    string GetValueExpression(IPropertyMetadata property)
+    {
+        return property.PropertyName;
+    }
+
+    string GetValueExpression(INavigationMetadata navigation)
+    {
+        return navigation.AssociationPropertyName;
+    }
+
+    string GetEnumerableTypeExpression(string typeName)
+    {
+        return "IEnumerable<" + typeName + ">";
+    }
+
+    string GetIPagedListTypeExpression(string typeName)
+    {
+        return "X.PagedList.IPagedList<" + typeName + ">";
+    }
+
+    List<PropertyInfo> GetPropsByAttribute(string attributeName)
+    {
+        List<PropertyInfo> resultProps = new List<PropertyInfo>();
+        Type modelType = Model.ModelMetadata.ModelType;
+        PropertyInfo[] props = modelType.GetProperties();
+        //Loop props
+        foreach (PropertyInfo prop in props)
+        {
+            //loop Props Attributes
+            foreach (var att in prop.GetCustomAttributes(true))
+            {
+                //if this prop has the att that we are looking for.
+                if (att.ToString() == attributeName)
+                {
+                    resultProps.Add(prop);
+                }
+            }
+        }
+
+        return resultProps;
+    }
+
+    string GenerateSearchStringFromSearchableProps(List<PropertyInfo> searchableProps)
+    {
+        string attributeName = "AspAdminTemplate.Attributes.SearchableAttribute";
+        string propertyName = "SearchTypeValue";
+        string result = "The search will be applied for those fields:<br>";
+
+        foreach (var searchableProp in searchableProps)
+        {
+            //loop Props Attributes
+            foreach (var att in searchableProp.GetCustomAttributes(true))
+            {
+                //if this prop has the att that we are looking for.
+                if (att.ToString() == attributeName)
+                {
+                    PropertyInfo[] attProps = att.GetType().GetProperties();
+                    foreach (PropertyInfo attProp in attProps)
+                    {
+                        if (attProp.Name.ToString().Equals(propertyName))
+                        {
+                            result += "- <b>" + searchableProp.Name + "</b> (" + attProp.GetValue(att).ToString() + ")<br>";
+                        }
+                    }
+                }
+            }
+        }
+        return result;
+    }
+
+    (PropertyInfo[] props,dynamic attribute)? GetModelClassCustomAttributesProperties(string attributeName)
+    {
+        Type modelType = Model.ModelMetadata.ModelType;
+        foreach (var att in modelType.GetCustomAttributes(true))
+        {
+            if (att.ToString() == attributeName)
+            {
+                return (att.GetType().GetProperties(),att);
+            }
+        }
+
+        return null;
+    }
+    (PropertyInfo[] props, dynamic attribute)? GetAttributesPropsOfProperty(PropertyInfo prop, string attributeName)
+    {
+        foreach (var att in prop.GetCustomAttributes(true))
+        {
+            if (att.ToString() == attributeName)
+            {
+                return (att.GetType().GetProperties(), att);
+            }
+        }
+
+        return null;
+    }
+}

@@ -1,0 +1,138 @@
+﻿ 
+@model IEnumerable<AspAdminTemplate.Models.avatar.subCategory>
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Mvc.Core.Common;
+
+@{
+    ViewData["Title"] = "subCategory";
+    ViewBag.Title = "subCategory";
+}
+
+
+
+
+
+
+
+
+
+<header id="home">
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light  bg-bleu navbar-avatar   mb-3">
+        <div class="container">
+            <div class="responsive-mo">
+                <a class="navbar-brand" asp-area="" asp-controller="ca" asp-action="Index">   <img src="~/assets/img/logo.svg" /></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                <ul class="navbar-nav flex-grow-1 list-avatar">
+
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-controller="categories" asp-action="Index">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark " asp-controller="categories" asp-action="Index">Nos Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark " asp-controller="categories" asp-action="Index">Téléchargements</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark " asp-controller="categories" asp-action="Index"> Application</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark " asp-controller="categories" asp-action="Index"> Contactez-nous</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="forms" asp-action="Create"> Demander film</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="/" target="_blank" asp-action=""> Nos Stores</a>
+                    </li>
+
+                </ul>
+
+
+            </div>
+        </div>
+    </nav>
+
+    @*<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>*@
+
+
+
+
+</header>
+
+<div class="bg-blanc">
+    <div class="container">
+        <p class="name_cat">@ViewBag.getCategorie.name</p>
+    </div>
+</div>
+<div class="bg-gris height-77">
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.ActionLink("ID", "afFicheSubCategory", new { sortOrder = ViewBag.NomSortParm, currentFilter = ViewBag.CurrentFilter })
+                    </th>
+                    <th>
+                        @Html.ActionLink("Nom ", "afFicheSubCategory", new { sortOrder = ViewBag.miseAjourSortParm, currentFilter = ViewBag.CurrentFilter })
+                    </th>
+                    <th>
+                        @Html.ActionLink("Date mise à jour", "afFicheSubCategory", new { sortOrder = ViewBag.TelechargementSortParm, currentFilter = ViewBag.CurrentFilter })
+                    </th>
+                    <th class="text-right">
+                        @Html.ActionLink("Téléchargement", "afFicheSubCategory", new { sortOrder = ViewBag.FileUrlSortParm, currentFilter = ViewBag.CurrentFilter })
+                    </th>
+                   
+                </tr>
+            </thead>
+
+
+            <p class="name_cat name_cat1">Accueil  <span class="mr-2 ml-2">></span>  <span>@ViewBag.getCategorie.name</span></p>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nom)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.miseAjour)
+                        </td>
+                       
+                        <td class="text-right">
+                            <a href="~/assets/files/@item.FileUrl" download>
+                                Télécharger fichier
+                            </a>
+
+                        </td>
+                        @*<td>
+                                @Html.DisplayFor(modelItem => item.Category.name)
+
+                            </td>*@
+
+                        @*<td>
+                                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                            </td>*@
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

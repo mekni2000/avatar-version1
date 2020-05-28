@@ -1,0 +1,107 @@
+﻿@model AspAdminTemplate.Models.avatar.category
+
+@{
+    ViewData["Title"] = "Delete";
+}
+    <header id="home" class="header-admin">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light  bg-bleu navbar-avatar   mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="categories" asp-action="Index">   <img src="~/assets/img/logo.svg" /></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1 list-avatar">
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="categories" asp-action="Index">Accueil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark " asp-controller="categories" asp-action="IndexAdmin">Categories</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark " asp-controller="subcategories" asp-action="Index">Sous Categories</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark " asp-controller="forms" asp-action="Index">Demande de film</a>
+                        </li>
+                        @*<li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="applicationroles" asp-action="Index">
+                                <i class="fas fa-cogs"></i> <span>Roles</span>
+                            </a>
+                        </li>*@
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="admin" asp-action="Index">
+                                <i class="fas fa-users"></i> <span>Users</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+
+                            @*<a class="dropdown-item has-icon" asp-action="Update" asp-controller="Admin" asp-route-id="@UserManager.GetUserId(User)">
+                                <i class="far fa-user"></i> Edit Profile
+                            </a>*@
+                            @*<div class="dropdown-divider"></div>*@
+                            <a class="nav-link" asp-controller="Account" asp-action="Logout">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </a>
+
+                        </li>
+
+
+
+
+                    </ul>
+
+
+                </div>
+            </div>
+        </nav>
+
+
+
+
+
+
+    </header>
+<section class="section">
+    <div class="container section-header">
+        <h1>Delete</h1>
+    </div>
+
+    <div class="container section-body">
+        <div>
+
+            <h2 class="section-title">category</h2>
+            <hr />
+            <div class="card">
+                <div class="card-header card-relative">
+                    <h2 class="text-danger">Are you sure you want to delete this?</h2>
+                </div>
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.name)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.name)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.Avatar)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Avatar)
+                        </dd>
+                    </dl>
+
+                    <form asp-action="Delete">
+                        <input type="hidden" asp-for="id" />
+                        <input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
+                        <input type="submit" value="Delete" class="btn btn-danger" />
+                        <a href="@ViewBag.returnUrl" class="btn btn-secondary">Back to List</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

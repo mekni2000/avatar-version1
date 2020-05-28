@@ -1,0 +1,115 @@
+﻿@model AspAdminTemplate.ViewModels.AvatarCategories
+
+@{
+    ViewData["Title"] = "Create";
+}
+ 
+    <header id="home" class="header-admin">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light  bg-bleu navbar-avatar   mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="categories" asp-action="Index">   <img src="~/assets/img/logo.svg" /></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1 list-avatar">
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="categories" asp-action="Index">Accueil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark " asp-controller="categories" asp-action="IndexAdmin">Categories</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark " asp-controller="subcategories" asp-action="Index">Sous Categories</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark " asp-controller="forms" asp-action="Index">Demande de film</a>
+                        </li>
+                        @*<li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="applicationroles" asp-action="Index">
+                                <i class="fas fa-cogs"></i> <span>Roles</span>
+                            </a>
+                        </li>*@
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="admin" asp-action="Index">
+                                <i class="fas fa-users"></i> <span>Users</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+
+                            @*<a class="dropdown-item has-icon" asp-action="Update" asp-controller="Admin" asp-route-id="@UserManager.GetUserId(User)">
+                                <i class="far fa-user"></i> Edit Profile
+                            </a>*@
+                            @*<div class="dropdown-divider"></div>*@
+                            <a class="nav-link" asp-controller="Account" asp-action="Logout">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </a>
+
+                        </li>
+
+
+
+
+                    </ul>
+
+
+                </div>
+            </div>
+        </nav>
+
+
+
+
+
+
+    </header>
+<div class="container margin-bottom-30">
+    <h6>Ajouter categorie</h6>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="name" class="control-label"></label>
+                    <input asp-for="name" class="form-control" />
+                    <span asp-validation-for="name" class="text-danger"></span>
+                </div>
+
+
+
+                @*<div class="padding-picture position-relative">
+                    <div class="border-picure text-center">
+                        <div class="label-picture ">
+                            <img id="image_upload_preview" />
+
+
+                            <input type="file" name="avatar" asp-for="avatar" id="" class="form-control picture inputFile" />
+                        </div>
+
+                    </div>
+                </div>*@
+
+
+
+
+                <div class="form-group">
+                    <label asp-for="avatar" class="control-label"></label>
+                    <input type="file" name="avatar" asp-for="avatar" class="form-control" />
+                    <span asp-validation-for="avatar" class="text-danger"></span>
+                </div>
+                <div class="row align-items-center mt-5">
+                    <div class="form-group mr-5 col-6">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                    <div class="mt-5 col-6">
+                        <a class="btn btn-info " asp-action="IndexAdmin">Back to List</a>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+

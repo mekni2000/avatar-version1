@@ -1,0 +1,92 @@
+﻿@model RoleEdit
+
+
+<section class="section">
+    <div class="section-header">
+        <h1>Modifier un rôle</h1>
+    </div>
+
+    <div class="section-body">
+        <h2 class="section-title">Modifier un rôle</h2>
+
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header card-relative">
+                        <div class="card-header-form card-relative">
+                            <div asp-validation-summary="All" class="text-danger"></div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form method="post">
+                            <input type="hidden" name="roleName" value="@Model.Role.Name" />
+                            <input type="hidden" name="roleId" value="@Model.Role.Id" />
+
+                            <h4>Ajouter ou supprimer membre à @Model.Role.Name</h4>
+
+                            @foreach (IdentityUser user in Model.Members)
+                            {
+                                @if (@Model.Role.Name == "Administrateur" && @user.UserName == "Admin")
+                                {
+                                    <label class="custom-switch mt-2">
+                                        <input type="checkbox" class="custom-switch-input" name="" value="@user.Id" disabled checked>
+                                        <span class="custom-switch-indicator"></span>
+                                        <span class="custom-switch-description">@user.UserName (Vous ne pouvez pas supprimer cet utilisateur de ce rôle)</span>
+                                    </label>
+                                }
+                                else
+                                {
+                                    <label class="custom-switch mt-2">
+                                        <input type="checkbox" class="custom-switch-input" name="" value="@user.Id" checked onchange="change(this,@user.UserName)">
+                                        <input Id="@user.UserName" name="" type="hidden" value="@user.Id" />
+                                        <span class="custom-switch-indicator"></span>
+                                        <span class="custom-switch-description">@user.UserName</span>
+                                    </label>
+                                }
+
+                            }
+
+                            @foreach (IdentityUser user in Model.NonMembers)
+                            {
+                                @if (@user.UserName != "Admin")
+                                {
+                                     <label class="custom-switch mt-2">
+                                        <input type="checkbox" class="custom-switch-input" name="" value="@user.Id" onchange="change(this,@user.UserName)">
+                                        <input Id="@user.UserName" name="" type="hidden" value="@user.Id" />
+                                        <span class="custom-switch-indicator"></span>
+                                        <span class="custom-switch-description">@user.UserName</span>
+                                    </label>
+                                }
+
+                            }
+
+                            <br />
+
+                            <button type="submit" class="btn btn-primary">Enregistrer</button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script >
+    
+    function change(checkbox, id)
+    {
+        if (checkbox.checked)
+        {
+            checkbox.name = "AddIds";
+            id.name = "";
+        }
+        else
+        {
+            checkbox.name = id.name = "DeleteIds";
+        }
+    }
+        
+</script>
